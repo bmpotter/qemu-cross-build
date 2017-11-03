@@ -116,10 +116,12 @@ targets/$(ARCH)/buildimage.img: targets/$(ARCH)/osimage.img bin/run.sh bin/build
 		/rbin/run.sh $(ARCH) buildimage.img ../nonjob.img /rbin/build.sh \
 		'
 
+buildimage.img: targets/$(ARCH)/buildimage.img
+
 targets/$(ARCH)/loot: targets/$(ARCH)/buildimage.img
 
 loot: targets/$(ARCH)/loot
-	ls -l targets/$(ARCH)/loot
+	ls -1 targets/$(ARCH)/loot
 
 clean:
 	rm -rf *.flag targets/*/loot
