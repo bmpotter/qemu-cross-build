@@ -55,7 +55,8 @@ case "$ARCH" in
 		-serial telnet:127.0.0.1:22222,server,nowait &
 		;;
 	x86_64|x86)
-		qemu-system-x86_64 -enable-kvm -smp 4 -m 2048 -nographic \
+		KVM=$(lscpu | grep Virtualization | awk '{print $NF}' | grep full >/dev/null && echo || echo "-enable-kvm")
+		qemu-system-x86_64 $KVM -smp 4 -m 2048 -nographic \
 		-device e1000,netdev=user0 \
 		-netdev user,id=user0,hostfwd=tcp::2222-:22 \
 		-drive file=$IMAGE,if=virtio,cache=writeback,index=0 \
