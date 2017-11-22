@@ -75,7 +75,7 @@ nc localhost 22222 &
 
 # wait until I can ssh in
 ssh-keygen -f "/root/.ssh/known_hosts" -R "[localhost]:2222"
-while ! ssh -o StrictHostKeyChecking=no -p 2222 localhost 'grep "Cloud-init v. 0.7.9 finished" /var/log/cloud-init-output.log'; do sleep 10; done
+while ! ssh -o StrictHostKeyChecking=no -p 2222 localhost 'egrep "Cloud-init v. .* finished" /var/log/cloud-init-output.log'; do sleep 10; done
 
 # run payload, payload needs to end with reboot
 bash -x $PAYLOAD

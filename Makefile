@@ -61,7 +61,7 @@ targets/$(ARCH)/vmlinuz: targets/$(ARCH)/xenial-server-cloudimg-$(PACKAGE_ARCH)-
 		qemu-nbd -c /dev/nbd0 xenial-server-cloudimg-$(PACKAGE_ARCH)-disk1.img; \
 		partprobe /dev/nbd0; \
 		mount -r /dev/nbd0p1 /mnt; \
-		cp -f /mnt/boot/vmlinuz .; \
+		cp -f /mnt/boot/vmlinuz* vmlinuz; \
 		umount /mnt; \
 		qemu-nbd -d /dev/nbd0 \
 		'
@@ -76,7 +76,7 @@ targets/$(ARCH)/initrd.img: targets/$(ARCH)/xenial-server-cloudimg-$(PACKAGE_ARC
 		qemu-nbd -c /dev/nbd0 xenial-server-cloudimg-$(PACKAGE_ARCH)-disk1.img; \
 		partprobe /dev/nbd0; \
 		mount -r /dev/nbd0p1 /mnt; \
-		cp -f /mnt/boot/initrd.img .; \
+		cp -f /mnt/boot/initrd.img* initrd.img; \
 		umount /mnt; \
 		qemu-nbd -d /dev/nbd0 \
 		'

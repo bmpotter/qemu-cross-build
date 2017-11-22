@@ -13,6 +13,8 @@ apt-get install -y qemu-kvm docker-ce make git
 
 ### Build
 
+As `root`:
+
 ```
 git clone https://github.com/open-horizon/qemu-cross-build
 cd qemu-cross-build
